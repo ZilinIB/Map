@@ -19,7 +19,9 @@ def find_closest(location, centroids):
     [2.0, 3.0]
     """
     # BEGIN Question 3
-    "*** REPLACE THIS LINE ***"
+    distances = [distance(location, centroid) for centroid in centroids]
+    Location_Distance_pairs = zip(centroids, distances)
+    return min(Location_Distance_pairs, key=lambda x: x[1])[0]
     # END Question 3
 
 
@@ -48,7 +50,9 @@ def group_by_centroid(restaurants, centroids):
     restaurants closest to the same centroid.
     """
     # BEGIN Question 4
-    "*** REPLACE THIS LINE ***"
+    pairs = zip([find_closest(restaurant_location(res), centroids)
+                 for res in restaurants], restaurants)
+    return group_by_first(pairs)
     # END Question 4
 
 
